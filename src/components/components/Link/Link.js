@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { AUTH_TOKEN } from '../../constants'
-import { timeDifferenceForDate } from '../../utils'
-import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
+import { AUTH_TOKEN } from '../../../constants'
+import { timeDifferenceForDate } from '../../../utils'
 
 class Link extends Component {
   render() {
@@ -13,7 +11,7 @@ class Link extends Component {
           <span className="gray">{this.props.index + 1}.</span>
           {authToken && (
             <div className="ml1 gray f11" onClick={() => this._voteForLink()}>
-              ▲
+              ▲▲▲
             </div>
           )}
         </div>
@@ -22,7 +20,10 @@ class Link extends Component {
             {this.props.link.description} ({this.props.link.url})
           </div>
           <div className="f6 lh-copy gray">
-            {this.props.link.votes.length} votes | by{' '}
+            {/* <div className="f13 lh-copy"> */}
+              {this.props.link.votes.length} votes |
+            {/* </div> */}
+            by{' '}
             {this.props.link.postedBy
               ? this.props.link.postedBy.name
               : 'Unknown'}{' '}
@@ -46,25 +47,4 @@ class Link extends Component {
   }
 }
 
-const VOTE_MUTATION = gql`
-  mutation VoteMutation($linkId: ID!) {
-    vote(linkId: $linkId) {
-      id
-      link {
-        votes {
-          id
-          user {
-            id
-          }
-        }
-      }
-      user {
-        id
-      }
-    }
-  }
-`
-
-export default graphql(VOTE_MUTATION, {
-  name: 'voteMutation',
-})(Link)
+export default Link

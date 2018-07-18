@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@shopify/polaris": "^2.4.0",
     "apollo-client": "^2.2.0",
     "apollo-client-preset": "^1.0.6",
     "apollo-link": "^1.0.7",

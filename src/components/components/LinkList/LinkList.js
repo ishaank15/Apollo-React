@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import Link from './Link'
-import { graphql } from 'react-apollo'
+import Link from '../Link'
 import gql from 'graphql-tag'
-import { LINKS_PER_PAGE } from '../../constants'
+import { LINKS_PER_PAGE } from '../../../constants'
+import { FEED_QUERY } from '../../Query/index'
+
+import Loading from '../Loading'
 
 class LinkList extends Component {
   componentDidMount() {
@@ -71,7 +73,7 @@ class LinkList extends Component {
   render() {
     const { feedQuery } = this.props;
     if (feedQuery && feedQuery.loading) {
-      return <div>Loading</div>
+      return <div><Loading/></div>
     }
   
     if (feedQuery && feedQuery.error) {
@@ -128,23 +130,28 @@ class LinkList extends Component {
           }
         }
       `,
-      updateQuery: (previous, { subscriptionData }) => {
-        if(subscriptionData.data.newLink) {
-          const newAllLinks = [
-            subscriptionData.data.newLink.node,
-            ...previous.feed.links,
-          ] ;
-          const result = {
-            ...previous,
-            __typename: previous.feed.__typename,
-            feed: {
-              links: newAllLinks,
-            },
-          }
-          return result
-        }
-        else return 
-      },
+      // updateQuery: (previous, current) => {
+        // console.log('updaaaaaaaaaaaaaaating', current)
+        // if(subscriptionData.data.newLink) {
+        //   const newAllLinks = [
+        //     subscriptionData.data.newLink.node,
+        //     ...previous.feed.links,
+        //   ] ;
+        //   console.log('........inside sucs.........');
+        //   const result = {
+        //     __typename: previous.feed.__typename,
+        //     ...previous,
+        //     feed: {
+        //       links: newAllLinks,
+        //     },
+        //   }
+        //   return result
+        // }
+        // else {
+        //   console.log('.................');
+        //   return 
+        // }
+      // },
     })
   }
 
@@ -162,41 +169,4 @@ class LinkList extends Component {
 }
 }
 
-export const FEED_QUERY = gql`
-  query FeedQuery($first: Int, $skip: Int, $orderBy: LinkOrderByInput) {
-    feed(first: $first, skip: $skip, orderBy: $orderBy) {
-      count
-      links {
-        id
-        createdAt
-        url
-        description
-        postedBy {
-          id
-          name
-        }
-        votes {
-          id
-          user {
-            id
-          }
-        }
-      }
-      count
-    }
-  }
-`
-
-export default graphql(FEED_QUERY, {
-  name: 'feedQuery',
-  options: ownProps => {
-    const page = parseInt(ownProps.match.params.page, 10)
-    const isNewPage = ownProps.location.pathname.includes('new')
-    const skip = isNewPage ? (page - 1) * LINKS_PER_PAGE : 0
-    const first = isNewPage ? LINKS_PER_PAGE : 100
-    const orderBy = isNewPage ? 'createdAt_DESC' : null
-    return {
-      variables: { first, skip, orderBy },
-    }
-  },
-})(LinkList)
+export default LinkList;
