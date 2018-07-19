@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { FEED_QUERY } from '../../Query/index'
-import { LINKS_PER_PAGE } from '../../../constants'
+import { FEED_QUERY } from '../Query/index'
+import { LINKS_PER_PAGE } from '../../constants'
 
 class CreateLink extends Component {
   state = {

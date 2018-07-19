@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import LinkList from './components/LinkList'
-import CreateLink from './components/CreateLink'
+import LinkList from '../pages/LinkList'
+import CreateLink from '../pages/CreateLink'
 import Header from './Header'
-import Login from './components/Login'
+import Login from '../pages/Login'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
 class App extends Component {
@@ -25,4 +25,3 @@ class App extends Component {
 }
 
 export default App
-

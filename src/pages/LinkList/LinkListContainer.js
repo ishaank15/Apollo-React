@@ -1,7 +1,7 @@
 import LinkList from './LinkList'
 import { graphql } from 'react-apollo'
-import { FEED_QUERY } from '../../Query/index'
-import { LINKS_PER_PAGE } from '../../../constants'
+import { FEED_QUERY } from '../Query/index'
+import { LINKS_PER_PAGE } from '../../constants'
 
 export default graphql(FEED_QUERY, {
   name: 'feedQuery',

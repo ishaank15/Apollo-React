@@ -1,5 +1,5 @@
 import { graphql, compose } from 'react-apollo'
-import { LOGIN_MUTATION, SIGNUP_MUTATION } from '../../Query/index'
+import { LOGIN_MUTATION, SIGNUP_MUTATION } from '../Query/index'
 import Login from './Login'
 
 export default compose(

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { AUTH_TOKEN } from '../../../constants'
+import { AUTH_TOKEN } from '../../constants'
 
 class Login extends Component {
   state = {
@@ -26,26 +26,26 @@ class Login extends Component {
             value={this.state.email}
             onChange={e => this.setState({ email: e.target.value })}
             type="text"
-            placeholder="Your email address"
+            placeholder="Enter your email address"
           />
           <input
             value={this.state.password}
             onChange={e => this.setState({ password: e.target.value })}
             type="password"
-            placeholder="Choose a safe password"
+            placeholder="Enter your password"
           />
         </div>
         <div className="flex mt3">
           <div className="pointer mr2 button" onClick={() => this._confirm()}>
-            {this.state.login ? 'login' : 'create account'}
+            {this.state.login ? 'Login' : 'Create account'}
           </div>
           <div
             className="pointer button"
             onClick={() => this.setState({ login: !this.state.login })}
           >
             {this.state.login
-              ? 'need to create an account?'
-              : 'already have an account?'}
+              ? 'Need to create an account?'
+              : 'Already have an account?'}
           </div>
         </div>
       </div>

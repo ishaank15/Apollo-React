@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Link from '../Link'
 import gql from 'graphql-tag'
-import { LINKS_PER_PAGE } from '../../../constants'
-import { FEED_QUERY } from '../../Query/index'
+import { LINKS_PER_PAGE } from '../../constants'
+import { FEED_QUERY } from '../Query/index'
 
 import Loading from '../Loading'
 

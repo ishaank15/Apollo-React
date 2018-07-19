@@ -7,8 +7,6 @@ class Loading extends React.Component{
         <div className='skeleton-section '>
           Your content is being Loaded.Please wait....
       </div>
-      <div className='full-column'>
-      </div>
       </div>
     )
   }
