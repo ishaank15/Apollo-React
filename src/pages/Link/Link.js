@@ -1,38 +1,42 @@
 import React, { Component } from 'react'
 import { AUTH_TOKEN } from '../../constants'
 import { timeDifferenceForDate } from '../../utils'
+import { Card, Layout } from '@shopify/polaris'
 
 class Link extends Component {
   render() {
     const authToken = localStorage.getItem(AUTH_TOKEN)
     return (
-      <div className="flex mt2 items-start">
-        <div className="flex items-center">
-          <span className="gray">{this.props.index + 1}.</span>
+      <Layout>
+        <Layout.Section secondary>
+          <Card title="Votes" sectioned>
           {authToken && (
-            <div className="ml1 gray f11" onClick={() => this._voteForLink()}>
-              ▲
-            </div>
-          )}
-        </div>
-        <div className="ml1">
-          <div>
-            {this.props.link.description} ({this.props.link.url})
-          </div>
-          <div className="f6 lh-copy gray">
-            <div className="f13 lh-copy">
-              {this.props.link.votes.length} votes |
-            </div>
-            <br/>
-            by{' '}
-            {this.props.link.postedBy
-              ? this.props.link.postedBy.name
-              : 'Unknown'}{' '}
+              <div className="ml1 gray f13" onClick={() => this._voteForLink()}>
+                ▲ {this.props.link.votes.length} votes
+              </div>
+            )}
+            <Layout.Section>
+            <Card sectioned>
+              <span className="gray">{this.props.index + 1}.   </span>
+              <b> {this.props.link.description} </b>
               <br/>
-            {timeDifferenceForDate(this.props.link.createdAt)}
-          </div>
-        </div>
-      </div>
+              Link: <u>({this.props.link.url})</u> 
+              <br/>
+              <div className="ml1 gray f11" >
+                by{' '} {this.props.link.postedBy
+                  ? this.props.link.postedBy.name
+                  : 'Unknown'}{' '}
+                  <br/>
+                {timeDifferenceForDate(this.props.link.createdAt)}
+              </div>
+            </Card>
+            </Layout.Section>
+          </Card>
+        </Layout.Section>
+
+        
+      </Layout>
+      
     )
   }
 

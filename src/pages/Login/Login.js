@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { AUTH_TOKEN } from '../../constants'
+import { TextField, Button, Card } from '@shopify/polaris'
 
 class Login extends Component {
   state = {
@@ -9,46 +10,57 @@ class Login extends Component {
     name: '',
   }
 
+  handleName = (value) => {
+    this.setState({name: value});
+  };
+
+  handlePassword = (value) => {
+    this.setState({password: value});
+  };
+
+  handleEmail = (value) => {
+    this.setState({email: value});
+  };
+
   render() {
     return (
-      <div>
-        <h4 className="mv3">{this.state.login ? 'Login' : 'Sign Up'}</h4>
+      <Card  title={ this.state.login ? 'Login' : 'Sign Up' } sectioned>
+        {/* <h4 className="mv3">{this.state.login ? 'Login' : 'Sign Up'}</h4> */}
         <div className="flex flex-column">
           {!this.state.login && (
-            <input
+            <TextField
+              label="Name"
               value={this.state.name}
-              onChange={e => this.setState({ name: e.target.value })}
-              type="text"
+              onChange={this.handleName}
               placeholder="Your name"
             />
           )}
-          <input
+          <TextField
+            label="Email"
+            type="email"
             value={this.state.email}
-            onChange={e => this.setState({ email: e.target.value })}
-            type="text"
-            placeholder="Enter your email address"
+            placeholder="Enter you email"
+            onChange={this.handleEmail}
           />
-          <input
-            value={this.state.password}
-            onChange={e => this.setState({ password: e.target.value })}
+          <TextField
+            label="Password"
             type="password"
-            placeholder="Enter your password"
+            value={this.state.password}
+            placeholder="Enter you password"
+            onChange={this.handlePassword}
           />
         </div>
-        <div className="flex mt3">
-          <div className="pointer mr2 button" onClick={() => this._confirm()}>
+          <Button primary submit={true} onClick={() => this._confirm()}>
             {this.state.login ? 'Login' : 'Create account'}
-          </div>
-          <div
-            className="pointer button"
-            onClick={() => this.setState({ login: !this.state.login })}
-          >
+          </Button>
+
+          <Button primary submit={true} onClick={() => this.setState({ login: !this.state.login })} >
             {this.state.login
               ? 'Need to create an account?'
-              : 'Already have an account?'}
-          </div>
-        </div>
-      </div>
+              : 'Already have an account?'
+            }
+          </Button>
+      </Card>
     )
   }
 

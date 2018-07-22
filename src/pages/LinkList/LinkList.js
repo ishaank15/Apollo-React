@@ -4,7 +4,7 @@ import gql from 'graphql-tag'
 import { LINKS_PER_PAGE } from '../../constants'
 import { FEED_QUERY } from '../Query/index'
 
-import Loading from '../Loading'
+import SkeletonScreen from '../../components/SkeletonScreen';
 
 class LinkList extends Component {
   componentDidMount() {
@@ -73,7 +73,7 @@ class LinkList extends Component {
   render() {
     const { feedQuery } = this.props;
     if (feedQuery && feedQuery.loading) {
-      return <div><Loading/></div>
+      return <div><SkeletonScreen/></div>
     }
   
     if (feedQuery && feedQuery.error) {
@@ -130,28 +130,29 @@ class LinkList extends Component {
           }
         }
       `,
-      // updateQuery: (previous, current) => {
-        // console.log('updaaaaaaaaaaaaaaating', current)
-        // if(subscriptionData.data.newLink) {
-        //   const newAllLinks = [
-        //     subscriptionData.data.newLink.node,
-        //     ...previous.feed.links,
-        //   ] ;
-        //   console.log('........inside sucs.........');
-        //   const result = {
-        //     __typename: previous.feed.__typename,
-        //     ...previous,
-        //     feed: {
-        //       links: newAllLinks,
-        //     },
-        //   }
-        //   return result
-        // }
-        // else {
-        //   console.log('.................');
-        //   return 
-        // }
-      // },
+
+      updateQuery: (previous, { subscriptionData }) => {
+        if (!subscriptionData.data) {
+          return previous;
+        }
+        console.log('previous', previous)
+        if(subscriptionData.data.newLink) {
+          const newAllLinks = [
+            subscriptionData.data.newLink.node,
+            ...previous.feed.links,
+          ] ;
+          const result = {
+            ...previous,
+            feed: {
+              ...previous.feed,
+              ...previous.postedBy,
+              ...previous.votes,
+              links: newAllLinks,
+            }
+          }
+          return result
+        }
+      }
     })
   }
 

@@ -10,7 +10,7 @@ export default graphql(FEED_QUERY, {
     const isNewPage = ownProps.location.pathname.includes('new')
     const skip = isNewPage ? (page - 1) * LINKS_PER_PAGE : 0
     const first = isNewPage ? LINKS_PER_PAGE : 100
-    const orderBy = isNewPage ? 'createdAt_DESC' : null
+    const orderBy = 'createdAt_DESC'
     return {
       variables: { first, skip, orderBy },
     }

@@ -47,8 +47,7 @@ class CreateLink extends Component {
           query: FEED_QUERY,
           variables: { first, skip, orderBy },
         })
-        data.feed.links.splice(0, 0, post)
-        data.feed.links.pop()
+        data.feed.links.push(post)
         store.writeQuery({
           query: FEED_QUERY,
           data,
