@@ -8,19 +8,19 @@ class SkeletonScreen extends React.Component {
         <Layout>
           <Layout.Section>
             <Card sectioned>
-              <SkeletonBodyText lines={5}/>
+              <SkeletonBodyText lines={7}/>
             </Card>
             <Card sectioned>
-              <SkeletonBodyText lines={5}/>
+              <SkeletonBodyText lines={7}/>
             </Card>
             <Card sectioned >
-              <SkeletonBodyText lines={5}/>
+              <SkeletonBodyText lines={7}/>
             </Card>
             <Card sectioned >
-              <SkeletonBodyText lines={5}/>
+              <SkeletonBodyText lines={7}/>
             </Card>
             <Card sectioned >
-              <SkeletonBodyText lines={5}/>
+              <SkeletonBodyText lines={7}/>
             </Card>
           </Layout.Section>
         </Layout>
