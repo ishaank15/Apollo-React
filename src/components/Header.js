@@ -5,36 +5,11 @@ import { AUTH_TOKEN } from '../constants'
 import { Button } from '@shopify/polaris'
 
 class Header extends Component {
-  // state = {
-  //   selected: 0,
-  // };
-
-  // handleTabChange = (selectedTabIndex) => {
-  //   this.setState({selected: selectedTabIndex});
-
-  // };
-
   render() {
-    // const {selected} = this.state;
-    // const tabs = [
-    //   {
-    //     id: 'new-post',
-    //     content: 'New',
-    //   },
-    //   {
-    //     id: 'all-post',
-    //     content: 'All',
-    //   },
-    //   {
-    //     id: 'submit-post',
-    //     content: 'Submit a post',
-    //   }
-    // ]
     const authToken = localStorage.getItem(AUTH_TOKEN)
     return (
      
       <div className="flex pa1 justify-between nowrap orange">
-       {/* <Tabs tabs={tabs} selected={selected} onSelect={this.handleTabChange} /> */}
         <div className="flex flex-fixed black">
           <div className="fw7 mr1">Post Page</div>
           <Link to="/" className="ml1 no-underline black">

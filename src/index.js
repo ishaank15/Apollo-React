@@ -8,7 +8,6 @@ import { ApolloProvider } from 'react-apollo'
 import client from './ApolloClient'
 import '@shopify/polaris/styles.css';
 import {AppProvider} from '@shopify/polaris';
-// import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 
 ReactDOM.render(
   <AppProvider>
